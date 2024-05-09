@@ -4,9 +4,8 @@ exports.homePageCatalog = class homePageCatalog {
  
   constructor(page) {
     this.page = page;
-    this.catalogLink = page.locator(getByRole('navigation').getByRole('link', { name: 'Каталог' }));
-    this.cachePopup =page.locator(getByRole('heading', { name: 'Заботясь о вашей конфиденциальности, мы просим вас дать согласие на обработку и ' }))
-    this.confirmButton = page.locator(getByLabel('Соглашаюсь', { exact: true }));
+    this.cachePopup =page.getByText('Персонализированная реклама и контент, определение эффективности рекламы и конте');
+    this.confirmButton = page.getByLabel('Соглашаюсь', { exact: true });
   }
 
   async goto() {
@@ -14,7 +13,7 @@ exports.homePageCatalog = class homePageCatalog {
   }
 
   async goToCatalog() {
-    await this.catalogLink.first().click();
+    await this.page.goto('https://catalog.onliner.by/')
     await expect(this.cachePopup).toBeVisible();
   }
 
