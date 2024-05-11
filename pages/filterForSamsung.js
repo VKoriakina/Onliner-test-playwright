@@ -4,16 +4,16 @@ exports.filterForSamsung = class filterForSamsung {
  
   constructor(page) {
     this.page = page;
-    this.samsung = page.locator('li:nth-child(2) > .catalog-form__checkbox-label > .i-checkbox > .i-checkbox__faux')
+    this.samsung = page.locator("//div[@class='catalog-form__checkbox-sign' and text()='Samsung']");
     this.priceDo = page.getByPlaceholder('до');
-    this.resolution = page.getByRole('listitem').filter({ hasText: '1920x1080 (Full HD)' }).locator('div');
+    this.resolution = page.locator("//div[@class='catalog-form__checkbox-sign' and text() ='1920x1080 (Full HD)']");
     this.diagonalOt = page.getByRole('combobox').first();
     this.diagonalDo = page.getByRole('combobox').nth(1);
 
   }
 
   async selectSumsung() {
-    await this.sumsung.click();
+    await this.samsung.click();
   }
 
   async selectPrice() {
