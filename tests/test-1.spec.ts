@@ -15,4 +15,14 @@ test('test', async ({ page }) => {
   await Filter.selectPrice();
   await Filter.selectResolution();
   await Filter.selectDiagonal();
+
+
+  const surchClass = page.locator("//div[@class='catalog-form__offers-list']");
+  const surchTitles = await surchClass.locator("//a[@class='catalog-form__link catalog-form__link_primary-additional catalog-form__link_base-additional catalog-form__link_font-weight_semibold catalog-form__link_nodecor']").all();
+  expect(await surchClass.count()).toBeGreaterThan(0); 
+  // for (const title of surchTitles) {
+  //     expect(await title.textContent()).toContain('Samsung');
+  // }
+  expect(surchTitles).toContain('Samsung');
+  
 });
