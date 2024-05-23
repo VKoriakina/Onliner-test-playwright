@@ -1,9 +1,9 @@
-import { test, expect } from '@playwright/test';
+import {test, expect } from '../fixtures';
 import { homePage} from '../pages/homePage';
 import { navigation } from '../pages/navigation';
 import {filter} from '../pages/filter';
 
-test('test', async ({ page }) => {
+test('tv filter validation', async ({ page, tvTitle }) => {
   const Catalog = new homePage(page);
   const TV = new navigation(page);
   const Filter = new filter(page);
@@ -12,7 +12,7 @@ test('test', async ({ page }) => {
   await Catalog.goToCatalog();
   await Catalog.confirmCache();
   await TV.goToTV();
-  await Filter.selectSamsung();
+  await Filter.selectTitle(tvTitle);
   await Filter.selectPrice();
   await Filter.selectResolution();
   await Filter.selectDiagonal1();
@@ -25,9 +25,8 @@ test('test', async ({ page }) => {
   const searchSize = await searchElementClass.locator("//div[@class ='catalog-form__parameter-part catalog-form__parameter-part_1' ]/child::*[1]").allInnerTexts();
 
   // TITLE CHECK
-  const title = 'Samsung';
   searchTitles.forEach((result, index) => {
-      expect(result, `row #${index} should contain ${title}`).toContain(title);
+      expect(result, `row #${index} should contain ${tvTitle}`).toContain(tvTitle);
   });
    
 // PRICE CHECK

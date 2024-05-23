@@ -4,18 +4,19 @@ exports.filter = class filter{
  
   constructor(page) {
     this.page = page;
-    this.samsung = page.locator("//div[@class='catalog-form__checkbox-sign' and text()='Samsung']");
     this.priceDo = page.getByPlaceholder('до');
-    this.resolution = page.locator("//div[@class='catalog-form__checkbox-sign' and text() ='1920x1080 (Full HD)']");
     this.diagonalOt = page.getByRole('combobox').first();
     this.diagonalDo = page.getByRole('combobox').nth(1);
-
   }
 
-  async selectSamsung(name = 'Samsung') {
+  getCheckboxLocator(item) {
+    return this.page.locator(`//div[@class='catalog-form__checkbox-sign' and text()='${item}']`);
+  }
+
+  async selectTitle(name) {
     await test.step(`Click to check ${name}`, async () => {
       const pricePromise = this.page.waitForResponse('**/search/**');
-      await this.samsung.click();
+      await this.getCheckboxLocator(name).click();
       await pricePromise;
     })
   }
@@ -29,10 +30,10 @@ exports.filter = class filter{
   }
 
 
-  async selectResolution() {
+  async selectResolution(resolution) {
     await test.step('Select resolution', async () => {
       const pricePromise = this.page.waitForResponse('**/search/**');
-      await this.resolution.click();
+      await this.getCheckboxLocator(resolution).click();
       await pricePromise;
     })
   }
