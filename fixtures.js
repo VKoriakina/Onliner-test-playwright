@@ -5,8 +5,11 @@ const myFirstFixture = {
     // We can later override it in the config.
     person: ['John', { option: true }],
 
-    tvTitle: [
-        'Samsung',
+    tv: [
+        {
+            title: 'Samsung',
+            resolution: '123421342314'
+        },
         {
             option: true,
         }

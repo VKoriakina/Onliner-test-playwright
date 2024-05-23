@@ -3,7 +3,7 @@ import { homePage} from '../pages/homePage';
 import { navigation } from '../pages/navigation';
 import {filter} from '../pages/filter';
 
-test('tv filter validation', async ({ page, tvTitle }) => {
+test('tv filter validation', async ({ page, tv }) => {
   const Catalog = new homePage(page);
   const TV = new navigation(page);
   const Filter = new filter(page);
@@ -12,7 +12,7 @@ test('tv filter validation', async ({ page, tvTitle }) => {
   await Catalog.goToCatalog();
   await Catalog.confirmCache();
   await TV.goToTV();
-  await Filter.selectTitle(tvTitle);
+  await Filter.selectTitle(tv.title);
   await Filter.selectPrice();
   await Filter.selectResolution();
   await Filter.selectDiagonal1();
