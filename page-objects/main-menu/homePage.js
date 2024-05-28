@@ -1,14 +1,14 @@
 const { expect } = require('@playwright/test');
 
-exports.homePage = class homePage {
- 
+exports.HomePage = class HomePage {
+
   constructor(page) {
     this.page = page;
     this.cachePopup =page.getByText('Персонализированная реклама и контент, определение эффективности рекламы и конте');
     this.confirmButton = page.getByLabel('Соглашаюсь', { exact: true });
   }
 
-  async goto() {
+  async navigateTo() {
     await this.page.goto('https://www.onliner.by/');
   }
 

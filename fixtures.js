@@ -3,12 +3,25 @@ const base = require('@playwright/test');
 const myFirstFixture = {
     // Define an option and provide a default value.
     // We can later override it in the config.
-    person: ['John', { option: true }],
 
     tv: [
         {
             title: 'Samsung',
-            resolution: '123421342314'
+            diagonalMax: 50,
+            diagonalMin: 40,
+            resolution: '1920x1080 (Full HD)',
+            price: "1500"
+        },
+        {
+            option: true,
+        }
+    ],
+
+    catalogItems: [
+        {
+            menu: 'Электроника',
+            submenu: 'Телевидение',
+            subsubmenu: 'Телевизоры'
         },
         {
             option: true,
