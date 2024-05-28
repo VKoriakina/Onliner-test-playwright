@@ -10,7 +10,7 @@ test('tv filter validation', async ({ page, tv,catalogItems }) => {
 
   await homePage.navigateTo();
   await homePage.goToCatalog();
-  await homePage.confirmCache();
+  await homePage.confirmCookie();
   await catalog.selectCatalogItem(catalogItems.menu);
   await catalog.selectTelevision(catalogItems.submenu);
   await catalog.selectTV(catalogItems.subsubmenu);

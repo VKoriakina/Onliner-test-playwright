@@ -1,4 +1,4 @@
-const { expect } = require('@playwright/test');
+const { expect, test } = require('@playwright/test');
 
 exports.HomePage = class HomePage {
 
@@ -9,16 +9,22 @@ exports.HomePage = class HomePage {
   }
 
   async navigateTo() {
-    await this.page.goto('https://www.onliner.by/');
+    await test.step('Site page opening', async ()=>{
+      await this.page.goto('https://www.onliner.by/');
+    })
   }
 
   async goToCatalog() {
-    await this.page.goto('https://catalog.onliner.by/')
-    await expect(this.cachePopup).toBeVisible();
+   await test.step('Cookie pop-up appeared', async ()=>{
+     await this.page.goto('https://catalog.onliner.by/')
+     await expect(this.cachePopup).toBeVisible();
+   })
   }
 
-  async confirmCache() {
-    await this.confirmButton.click();
+  async confirmCookie() {
+    await test.step('Confirm cookie', async ()=> {
+      await this.confirmButton.click();
+    })
   }
 
 };

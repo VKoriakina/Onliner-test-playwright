@@ -91,9 +91,9 @@ exports.Filter = class Filter {
   // RESOLUTION CHECK
   async checkResolution(tv) {
     const searchSize = this.root.locator("//div[@class ='catalog-form__parameter-part catalog-form__parameter-part_1' ]/child::*[1]");
-    await expect(searchSize.count(), 'should have at least one item').toBeGreaterThan(0);
+    expect(await searchSize.count(), 'should have at least one item').toBeGreaterThan(0);
     for (const sizeLocator of await searchSize.all()) {
-      await expect.soft(titleLocator, `should contain ${tv.resolution}`).toContainText(tv.resolution);
+      await expect.soft(sizeLocator, `should contain ${tv.resolution}`).toContainText(tv.resolution);
     }
   }
 
