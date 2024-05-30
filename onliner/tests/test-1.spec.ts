@@ -9,7 +9,7 @@ test('tv filter validation', async ({page, tv}, testInfo) => {
   const mainPage = new MainPage(page);
   const cataloguePage = new CataloguePage(page);
   const TvPage = new TVPage(page);
-  const browser =new Browser(page);
+  const browser = new Browser(page);
 
   await browser.navigateToMainPage();
   await mainPage.navigateMainMenu('Каталог');
