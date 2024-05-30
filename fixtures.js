@@ -1,34 +1,27 @@
 const base = require('@playwright/test');
+const testDataJson = require('./onliner/test-data/testData.json');
 
-const myFirstFixture = {
-    // Define an option and provide a default value.
-    // We can later override it in the config.
 
-    tv: [
-        {
-            title: 'Samsung',
-            diagonalMax: 50,
-            diagonalMin: 40,
-            resolution: '1920x1080 (Full HD)',
-            price: "1500"
-        },
-        {
-            option: true,
-        }
-    ],
+const fixtures = {
+    tv: [ testDataJson.tv, { option: true} ],
 
-    catalogItems: [
-        {
-            menu: 'Электроника',
-            submenu: 'Телевидение',
-            subsubmenu: 'Телевизоры'
-        },
-        {
-            option: true,
-        }
-    ]
+    async page({page}, use){
+        // chromium
+        const context = await base.chromium.launchPersistentContext('', {
+            channel: 'chrome'
+        });
+        const customPage = await context.newPage();
+
+        console.log('creating new custom page');
+        await use(customPage);
+    }
+
+}
+
+const test = base.test.extend(fixtures);
+const { expect } = base;
+
+module.exports = {
+    test,
+    expect
 };
-
-exports.test = base.test.extend(myFirstFixture);
-
-exports.expect = base.expect;

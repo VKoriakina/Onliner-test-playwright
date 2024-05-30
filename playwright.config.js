@@ -11,7 +11,10 @@ const { defineConfig, devices } = require('@playwright/test');
  * @see https://playwright.dev/docs/test-configuration
  */
 module.exports = defineConfig({
-  testDir: './tests',
+  testDir: './onliner/tests',
+
+  // path to the global setup files.
+  // globalSetup: require.resolve('../playwright.config.js'),
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -29,7 +32,10 @@ module.exports = defineConfig({
   expect: {
     timeout: 40000,
   },
+
+
   use: {
+    baseURL: 'https://onliner.by',
     trace: 'on-first-retry',
     navigationTimeout: 30000,
     actionTimeout: 40000,
@@ -37,6 +43,10 @@ module.exports = defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
+    // {
+    //   name: 'login',
+    //
+    // },
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },

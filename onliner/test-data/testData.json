@@ -1,0 +1,10 @@
+{
+  "tv":
+    {
+      "title": "Samsung",
+      "diagonalMax": 50,
+      "diagonalMin": 40,
+      "resolution": "1920x1080 (Full HD)",
+      "price": "1500"
+    }
+}
